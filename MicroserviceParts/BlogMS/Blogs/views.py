@@ -21,19 +21,22 @@ def check_user(data):
 def BlogsList(request):
     queryset = Blog.objects.all()
     context = list(queryset.values('_id', 'name', 'intro', 'created', 'user_id'))
-    return JsonResponse(context, safe=False)    
+    return JsonResponse(context, safe=False)  
+
 def PostList(request):
     data = request.body.decode('utf-8')
     data_json = json.loads(data)
     queryset = Post.objects.get(_id=data_json['_id'])
     context = list(queryset.values('_id', 'title', 'blog_id', 'created'))
     return JsonResponse(context, safe=False)
+
 def CommentList(request):
     data = request.body.decode('utf-8')
     data_json = json.loads(data)
     queryset = Comment.objects.aget(_id=data_json['_id'])
     context = list(queryset.values('_id', 'user_id', 'comment', 'created','likes','dislikes'))
     return JsonResponse(context, safe=False)    
+
 def CommentOfCommentList(request):
     data = request.body.decode('utf-8')
     data_json = json.loads(data)
@@ -64,6 +67,7 @@ def CreateBlog(request):
                 return Http404("Error")
         else:
             return Http404("User Doesn´t exist")
+
 def CreatePost(request):
     if request.method =='POST':
         data=request.body.decode('utf-8')
@@ -83,6 +87,7 @@ def CreatePost(request):
                 return Http404("Error")
         else:
             return Http404("User Doesn´t exist")
+
 def CreateComment(request):
     if request.method =='POST':
         data=request.body.decode('utf-8')
@@ -102,6 +107,7 @@ def CreateComment(request):
                 return Http404("Error")
         else:
             return Http404("User Doesn´t exist")
+
 def CreateCommentOfComment(request):
     if request.method =='POST':
         data=request.body.decode('utf-8')
@@ -136,6 +142,7 @@ def DeleteBlog(request):
                 return Http404("Error")
         else:
             return Http404("User Doesn´t exist")
+
 def DeletePost(request):
     if request.method=="DELETE":
         data=request.body.decode('utf-8')
@@ -148,6 +155,7 @@ def DeletePost(request):
                 return Http404("Error")
         else:
             return Http404("User Doesn´t exist")
+
 def DeleteComment(request):
     if request.method=="DELETE":
         data=request.body.decode('utf-8')
@@ -160,6 +168,7 @@ def DeleteComment(request):
                 return Http404("Error")
         else:
             return Http404("User Doesn´t exist")
+            
 def DeleteCommentOfComment(request):
     if request.method=="DELETE":
         data=request.body.decode('utf-8')

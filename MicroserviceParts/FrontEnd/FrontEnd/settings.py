@@ -25,7 +25,7 @@ SECRET_KEY = '72g(9=u21ia6yhmpx^^8chq@rll@qkftbdvh*&r3yo5@328^u*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
+    'Front'
 ]
 
 MIDDLEWARE = [
@@ -118,3 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+#API GATEWAY URL
+PATH_VAR="http://<ip_gateway>:<puerto>"
+#Security
+SALT="B00kl!c|(2O20_th35alt"
+HASHES="20"
+KEY="unD¡aV!UnaVa(aV3st¡daDeUn!f0rm"
+IV="la_madr3_c0nEst0"
