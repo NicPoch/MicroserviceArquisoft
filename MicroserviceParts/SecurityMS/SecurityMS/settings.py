@@ -119,6 +119,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+#API GATEWAY URL
+PATH_VAR="http://<ip_gateway>:<puerto>"
 #APP Security
 SALT="B00kl!c|(2O20_th35alt"
 HASHES="20"
