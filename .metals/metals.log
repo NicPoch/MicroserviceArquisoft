@@ -2,3 +2,4 @@
 2020.12.02 10:13:28 INFO  time: initialize in 0.56s
 2020.12.02 10:13:29 WARN  Build server is not auto-connectable.
 2020.12.02 10:13:29 WARN  no build tool detected in workspace 'D:\Datos\Documents\Universidad\202020\ArquitecturaDiseñoDeSoftware\TempMicroS\MicroserviceArquisoft'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.02 11:39:57 INFO  shutting down Metals

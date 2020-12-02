@@ -1,1 +1,43 @@
 {% extends 'Front/base.html' %}
+<div class="container-fluid">
+    <!--Nav Bar-->
+    <div class="row">
+        <nav class="navbar navbar-dark bg-dark">
+                <a href="{% url 'home' %}">
+                    <h4 class="display-1">
+                        <u>
+                            Booklick
+                        </u>
+                    </h4>
+                </a>
+                <a href="{% url 'signup' %}">
+                <h4 class="display-4">
+                    Crear Cuenta
+                </h4>
+                </a>
+                <a href="{% url 'logIn' %}">
+                <h4 class="display-4">
+                    Log In
+                </h4>
+                </a>
+            </nav>
+        </div>
+    <!--Body-->
+    <div class="row">
+
+    </div>
+    <!--Contactanos-->
+    <div class="row">
+        <div class="row">
+            <h2 class="display-2">
+                Contáctanos
+            </h2>
+            <!--Place Django form-->
+        </div>        
+        <div class="row">
+            <h2 class="display-2">
+                Información de Contacto
+            </h2>
+        </div>
+    </div>
+</div>
