@@ -1,15 +1,15 @@
 import hashlib
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.backends import default_backend
-from SecurityMS.settings import HASHES,SALT,KEY,IV,NONCE
+from cryptography.fernet import Fernet,MultiFernet
+from SecurityMS.settings import HASHES,SALT,KEY_F1,KEY_F2,KEY_F3,KEY_F4
 from ..models import AuthUser
 #hash
 m=hashlib.sha512()
 #Encryption
-algorithm=algorithms.ChaCha20(KEY.encode(),nonce=NONCE.encode())
-cipher=Cipher(algorithm=algorithm,mode=None,backend=default_backend())#modes.CBC(IV.encode()),backend=default_backend())
-encryptor=cipher.encryptor()
-decryptor=cipher.decryptor()
+K1=Fernet(KEY_F1)
+K2=Fernet(KEY_F2)
+K3=Fernet(KEY_F3)
+K4=Fernet(KEY_F4)
+MF=MultiFernet([K1,K2,K3,K4])
 
 def hasher(msg:str)->str:
     hashedMsg=msg
@@ -18,29 +18,29 @@ def hasher(msg:str)->str:
         hashedMsg=m.digest()
     return str(hashedMsg)
 
-def encryptedStr(msg:str)->str:
-    return str(encryptor.update(msg)+encryptor.finalize())
+def encryptedMSG(msg:str)->bytes:
+    return MF.encrypt(msg.encode())
 
-def decryptorStr(msg:str)->str:
-    return str(decryptor.update(msg.encode())+decryptor.finalize())
+def decryptorMSG(msg:bytes)->str:
+    return MF.decrypt(msg).decode()
 
 def verify(username,password)->dict:
     #User info integrity
-    username=decryptorStr(username)
+    username=decryptorMSG(username)
     hashedUsername=hasher(username)
     #Password Integrity
-    password=decryptorStr(password)
+    password=decryptorMSG(password)
     hashedPassword=hasher(password)
     #See if user exists
     user=AuthUser.objects.get(password=hashedPassword,username=hashedUsername)
     try:
         hashedRol=hasher(user.rol)
         response={
-            'username':encryptedStr(username),
+            'username':encryptedMSG(username),
             'hashedUsername':hashedUsername,
-            'password':encryptedStr(password),
-            'hashedUsername':hashedPassword,
-            'rol':encryptedStr(user.rol),
+            'password':encryptedMSG(password),
+            'hashedpassword':hashedPassword,
+            'rol':encryptedMSG(user.rol),
             'hashedRol':hashedRol
         }
         return response
@@ -49,13 +49,13 @@ def verify(username,password)->dict:
 
 def createUser(username,password,rol)->bool:
     #User info integrity    
-    username=decryptorStr(username)
+    username=decryptorMSG(username)
     hashedUsername=hasher(username)
     #Password Integrity
-    password=decryptorStr(password)
+    password=decryptorMSG(password)
     hashedPassword=hasher(password)
     #decrypts Rol
-    rol=decryptorStr(rol)
+    rol=decryptorMSG(rol)
     #See if user exists
     user=AuthUser.objects.get(password=hashedPassword,username=hashedUsername)
     if user == None:
