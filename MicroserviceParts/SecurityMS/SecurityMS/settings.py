@@ -121,8 +121,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #API GATEWAY URL
 PATH_VAR="http://<ip_gateway>:<puerto>"
-#APP Security
+#Security
 SALT="B00kl!c|(2O20_th35alt"
-HASHES="20"
-KEY="unD¡aV!UnaVa(aV3st¡daDeUn!f0rm"
-IV="la_madr3_c0nEst0"
+HASHES=10
+KEY_F1=b'LPVHX_SC0r1uP3TDHr9zeNx_P9Py24WALWbHycRXAwk='
+KEY_F2=b'rR5TVpiJL4VCRB_AYQGwqxobwFcp4LeJ2hfKuPyBluI='
+KEY_F3=b'1B3AQ0Tfw27UYGakchGGb7WTfrnvd_mTcoQtkqkyOQU='
+KEY_F4=b'vI5PorlusWdok6cUbesLBfW-WpK7_Zks3IpkAzrNQVM='

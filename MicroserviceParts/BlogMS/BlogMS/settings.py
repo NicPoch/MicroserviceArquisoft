@@ -130,6 +130,7 @@ STATIC_URL = '/static/'
 PATH_VAR="http://<ip_gateway>:<puerto>"
 #Security
 SALT="B00kl!c|(2O20_th35alt"
-HASHES="20"
+HASHES=10
 KEY="unD¡aV!UnaVa(aV3st¡daDeUn!f0rm"
 IV="la_madr3_c0nEst0"
+NONCE="My_Cra7y-N0nc3:)"

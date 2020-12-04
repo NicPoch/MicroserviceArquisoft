@@ -1,13 +1,13 @@
 import hashlib
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-from BlogMS.settings import HASHES,SALT,KEY,IV
+from BlogMS.settings import HASHES,SALT,KEY,IV,NONCE
 
 #hash
 m=hashlib.sha512()
 #Encryption
-algorithm=algorithms.AES(KEY.encode())
-cipher=Cipher(algorithm=algorithm,mode=modes.CBC(IV.encode()),backend=default_backend())
+algorithm=algorithms.ChaCha20(KEY.encode(),nonce=NONCE.encode())
+cipher=Cipher(algorithm=algorithm,mode=None,backend=default_backend())#modes.CBC(IV.encode()),backend=default_backend())
 encryptor=cipher.encryptor()
 decryptor=cipher.decryptor()
 
