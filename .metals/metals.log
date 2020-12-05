@@ -3,3 +3,11 @@
 2020.12.02 10:13:29 WARN  Build server is not auto-connectable.
 2020.12.02 10:13:29 WARN  no build tool detected in workspace 'D:\Datos\Documents\Universidad\202020\ArquitecturaDiseñoDeSoftware\TempMicroS\MicroserviceArquisoft'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 2020.12.02 11:39:57 INFO  shutting down Metals
+2020.12.02 22:01:33 INFO  Started: Metals version 0.9.7 in workspace 'D:\Datos\Documents\Universidad\202020\ArquitecturaDiseñoDeSoftware\TempMicroS\MicroserviceArquisoft' for client vscode.
+2020.12.02 22:01:34 INFO  time: initialize in 1.24s
+2020.12.02 22:01:37 WARN  Build server is not auto-connectable.
+2020.12.02 22:01:37 WARN  no build tool detected in workspace 'D:\Datos\Documents\Universidad\202020\ArquitecturaDiseñoDeSoftware\TempMicroS\MicroserviceArquisoft'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.12.05 16:49:12 INFO  Started: Metals version 0.9.7 in workspace 'D:\Datos\Documents\Universidad\202020\ArquitecturaDiseñoDeSoftware\TempMicroS\MicroserviceArquisoft' for client vscode.
+2020.12.05 16:49:13 INFO  time: initialize in 1.17s
+2020.12.05 16:49:22 WARN  Build server is not auto-connectable.
+2020.12.05 16:49:22 WARN  no build tool detected in workspace 'D:\Datos\Documents\Universidad\202020\ArquitecturaDiseñoDeSoftware\TempMicroS\MicroserviceArquisoft'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
