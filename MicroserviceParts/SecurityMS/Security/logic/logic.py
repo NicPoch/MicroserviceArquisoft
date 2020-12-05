@@ -23,31 +23,27 @@ def encryptedMSG(msg:str)->str:
 def decryptorMSG(msg:str)->str:
     return MF.decrypt(eval(msg)).decode()
 
-def verify(username,password)->dict:
-    #User info integrity
-    username=decryptorMSG(username)
-    hashedUsername=hasher(username)
-    #Password Integrity
-    password=decryptorMSG(password)
-    hashedPassword=hasher(password)
-    #See if user exists
-    user=AuthUser.objects.get(password=hashedPassword,username=hashedUsername)
+def verify(request:dict)->dict:
     try:
-        hashedRol=hasher(user.rol)
+        if(hasher(decryptorMSG(request['username']))!=request['hashedUsername']):
+            return False
+        if(hasher(decryptorMSG(request['password']))!=request['hashedPassword']):
+            return False
+        #See if user exists
+        user=AuthUser.objects.get(password=request['hashedPassword'],username=request['hashedUsername'])
         response={
-            'username':encryptedMSG(username),
-            'hashedUsername':hashedUsername,
-            'password':encryptedMSG(password),
-            'hashedpassword':hashedPassword,
-            'rol':encryptedMSG(user.rol),
-            'hashedRol':hashedRol
+            'username':request['username'],
+            'hashedUsername':request['hashedUsername'],
+            'password':request['password'],
+            'hashedpassword':request['hashedPassword'],
+            'rol':str(encryptedMSG(user.rol))[2:-1],
+            'hashedRol':hasher(user.rol)
         }
         return response
     except Exception:
         return None
 
 def createUser(request:dict)->bool:
-    print("start create")
     if(hasher(decryptorMSG(request['username']))!=request['hashedUsername']):
         return False
     if(hasher(decryptorMSG(request['password']))!=request['hashedPassword']):

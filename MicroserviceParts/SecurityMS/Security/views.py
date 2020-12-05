@@ -9,12 +9,14 @@ import json
 @csrf_exempt
 def incomingVerification(request):
     if request.method=='GET':
-        requestValues=dict(request.GET.values('username','password'))
-        data=verify(requestValues['username'],requestValues['password'])
+        data = request.body.decode('utf-8')
+        requestValues = json.loads(data)
+        data=verify(requestValues)
         if(data==None):
             return HttpResponse(status=406)
         else:
-            return JsonResponse(data=data,safe=True,status=201)
+            print(data)
+            return JsonResponse(data=data,safe=False,status=201)
     else:
         return HttpResponse(status=400)
 @csrf_exempt
