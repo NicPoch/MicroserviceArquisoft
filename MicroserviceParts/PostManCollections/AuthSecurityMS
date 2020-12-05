@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "bd85489e-4479-4457-8ac8-c0f5d5d773f5",
+		"name": "AuthMicroservicePostMan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create an AuthUser Not GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "567f1ba4-8729-4a57-aee3-bcac1d38c514",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/createAuth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"createAuth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create AuthUser Incomplete Information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5178be9c-d941-4e10-ab81-7a24e03103a0",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"nicolas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/createAuth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"createAuth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creat Auth User Good",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e9296c9a-5028-4542-b409-4a8fa050e535",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"b'gAAAAABfzAKbtnLHxWeHcEcRDNdvUEVf34yTiHeP9PHF_rYqPao0riQ4XjMjSumA5aAfX05NGRgEhN3V5k4ax5xIBzinnhrPJQ=='\",\r\n    \"hashedUsername\":\"ac024d818c835121e0c97327607e29165b91684f0f85e1b7dd066ee5016c8ff067075d3bef9db35b738eb0cae842153886d2c6184c5ce0433b07ba3ab47e1461\",\r\n    \"password\":\"b'gAAAAABfzALHi-8_4bruiNRiBKAV3JlaM_iSaZYVf-Ad1YVdoHvKL1BQvs34Oaf3q42lh21XGn_S5MiB8Vdyx7J1FczXqFF-bg=='\",\r\n    \"hashedPassword\":\"64b5bb846f6227eaa081a678a573ae56444310c5e8fd7b7464b8251df703e41815f3bd3e0f3bb4dc6078f5ae9996805a611aa0877e44ff7509c111e22ce0b040\",\r\n    \"rol\":\"b'gAAAAABfzAL_TR-7czf_CgUX9mu-F_PIWg35GXP6F8u8F8g7FysRPWfwqayDsPyIbfV5p9W5g8dPib4upk1o7lnD7djVX7FzNw=='\",\r\n    \"hashedRol\":\"a315c94229f2e200b9269e3ab80ca9c554b9886cb9159a40c93cd6e49a5c0f6c0aae91efcae99aee26fc4665fc4e3700dcc476368fdc4c4ffd4a39e17df37834\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/createAuth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"createAuth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify wrong HTTP method",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "db61eb74-4137-4c3e-9aee-f57659ea23c6",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/auth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Verification Wrong request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00c2f634-c85b-4bd7-a9ba-edb587a83e27",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"b'gAAAAABfzAKctnLHxWeHcEcRDNdvUEVf34yTiHeP9PHF_rYqPao0riQ4XjMjSumA5aAfX05NGRgEhN3V5k4ax5xIBzinnhrPJQ=='\",\r\n    \"hashedUsername\":\"ac024d818c835121e0c97327607e29165b91684f0f85e1b7dd066ee5016c8ff067075d3bef9db35b738eb0cae842153886d2c6184c5ce0433b07ba3ab47e1461\",\r\n    \"password\":\"b'gAAAAABfzALHi-8_4bruiNRiBKAV3JlaM_iSaZYVf-Ad1YVdoHvKL1BQvs34Oaf3q42lh21XGn_S5MiB8Vdyx7J1FczXqFF-bg=='\",\r\n    \"hashedPassword\":\"64b5bb846f6227eaa081a678a573ae56444310c5e8fd7b7464b8251df703e41815f3bd3e0f3bb4dc6078f5ae9996805a611aa0877e44ff7509c111e22ce0b040\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/auth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get verification correct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86652004-97d8-4a8e-959a-b9b28b1fcf86",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(406);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"b'gAAAAABfzAKbtnLHxWeHcEcRDNdvUEVf34yTiHeP9PHF_rYqPao0riQ4XjMjSumA5aAfX05NGRgEhN3V5k4ax5xIBzinnhrPJQ=='\",\r\n    \"hashedUsername\":\"ac024d818c835121e0c97327607e29165b91684f0f85e1b7dd066ee5016c8ff067075d3bef9db35b738eb0cae842153886d2c6184c5ce0433b07ba3ab47e1461\",\r\n    \"password\":\"b'gAAAAABfzALHi-8_4bruiNRiBKAV3JlaM_iSaZYVf-Ad1YVdoHvKL1BQvs34Oaf3q42lh21XGn_S5MiB8Vdyx7J1FczXqFF-bg=='\",\r\n    \"hashedPassword\":\"64b5bb846f6227eaa081a678a573ae56444310c5e8fd7b7464b8251df703e41815f3bd3e0f3bb4dc6078f5ae9996805a611aa0877e44ff7509c111e22ce0b040\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/auth/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "a48da246-f202-4238-b5f3-00d1cdf4c331",
+			"key": "ip",
+			"value": "localhost"
+		},
+		{
+			"id": "c71aba22-b16c-4583-ac64-e920c4025a86",
+			"key": "port",
+			"value": "8080"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
