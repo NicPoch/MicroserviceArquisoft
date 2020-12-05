@@ -54,7 +54,7 @@ def createUser(request:dict)->bool:
     if user == []:
         try:
             newUser = AuthUser()
-            newUser.rol=hasher(decryptorMSG(request['rol']))
+            newUser.rol=decryptorMSG(request['rol'])
             newUser.username=hasher(decryptorMSG(request['username']))
             newUser.password=hasher(decryptorMSG(request['password']))
             newUser.save()
@@ -63,4 +63,11 @@ def createUser(request:dict)->bool:
             return False
     else:
         print(user)
+        return False
+def deleteAuthUser(request:dict)->bool:
+    if(hasher(decryptorMSG(request['username']))!=request['hashedUsername']):
+        return False
+    if(hasher(decryptorMSG(request['password']))!=request['hashedPassword']):
+        return False
+    if(hasher(decryptorMSG(request['rol']))!=request['hashedRol']):
         return False

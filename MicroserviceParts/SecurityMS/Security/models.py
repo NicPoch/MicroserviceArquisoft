@@ -6,3 +6,5 @@ class AuthUser(models.Model):
     password=models.TextField(blank=False,null=False,default=None)
     username=models.TextField(blank=False,null=False,default=None)
     rol=models.TextField(blank=False,null=False,default=None,choices=choices)
+    def __str__(self):
+        return "User "+str(self.pk)+"---"+self.rol

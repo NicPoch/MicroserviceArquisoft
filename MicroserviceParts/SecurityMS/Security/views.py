@@ -35,3 +35,10 @@ def createAuthUser(request):
             return HttpResponse(status=406)        
     else:
         return HttpResponse(status=400)
+#Solo puede borrar un admin o el usuario mismo
+@csrf_exempt
+def deleteAuthUser(request):
+    if request.method=="DELETE":
+        pass
+    else:
+        return HttpResponse(status=400)
