@@ -65,9 +65,32 @@ def createUser(request:dict)->bool:
         print(user)
         return False
 def deleteAuthUser(request:dict)->bool:
-    if(hasher(decryptorMSG(request['username']))!=request['hashedUsername']):
+    #verify current user credentials doing the petition
+    if(hasher(decryptorMSG(request['person']['username']))!=request['person']['hashedUsername']):
         return False
-    if(hasher(decryptorMSG(request['password']))!=request['hashedPassword']):
+    if(hasher(decryptorMSG(request['person']['password']))!=request['person']['hashedPassword']):
         return False
-    if(hasher(decryptorMSG(request['rol']))!=request['hashedRol']):
+    if(hasher(decryptorMSG(request['person']['rol']))!=request['person']['hashedRol']):
         return False
+    #verify the credentials for the user to be deleted
+    if(hasher(decryptorMSG(request['deleted']['username']))!=request['deleted']['hashedUsername']):
+        return False
+    if(hasher(decryptorMSG(request['deleted']['password']))!=request['deleted']['hashedPassword']):
+        return False
+    #check if both the person requesting and the person to ne deleted exist
+    p_request=AuthUser.objects.check(password=request['person']['hashedPassword'],username=request['person']['hashedPassword'])
+    if(p_request==[]):
+        return False
+    p_request=AuthUser.objects.get(password=request['person']['hashedPassword'],username=request['person']['hashedPassword'])
+    p_deleted=AuthUser.objects.check(password=request['deleted']['hashedPassword'],username=request['deleted']['hashedPassword'])
+    if(p_deleted==[]):
+        return False
+    p_deleted=AuthUser.objects.get(password=request['deleted']['hashedPassword'],username=request['deleted']['hashedPassword'])
+    #Check if person asking for deletion is a Booklick Admin
+    if(p_request.rol=="BOOKLICK_ADMIN"):
+        p_deleted.delete()
+    elif(p_request==p_deleted):
+        p_deleted.delete()
+    else:
+        return False
+    return True
