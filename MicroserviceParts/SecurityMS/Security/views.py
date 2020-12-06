@@ -42,3 +42,5 @@ def deleteAuthUser(request):
         pass
     else:
         return HttpResponse(status=400)
+def Home(request):
+    return render(request,template_name="Security\main.html")
