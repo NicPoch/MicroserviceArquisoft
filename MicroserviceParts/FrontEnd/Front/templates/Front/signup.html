@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<a href="{% url 'logOut' %}">
+    <h4 class="display-4">
+        Log Out
+    </h4>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <h2>Sign up</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign up</button>
+    </form>
+</div>
+{% endblock %}
