@@ -1,8 +1,55 @@
-{% load bootstrap4 %}
+<!doctype html>
+<html lang="en">
 
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>
+        Booklick
+    </title>
+</head>
 
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
+<body>
+    <div class="container-fluid">
+        <!--Nav Bar-->
+        <div class="row">
+            <nav class="navbar navbar-dark bg-dark">
+                <a href="{% url 'home' %}">
+                    <h4 class="display-1">
+                        <u>
+                            Booklick
+                        </u>
+                    </h4>
+                </a>
+                {% block navbar %}
+
+                {% endblock %}
+            </nav>
+        </div>
+        <!--Body-->
+        <div class="row">
+
+        </div>
+        {% block content %}
+
+        {% endblock %}
+        <!--Contactanos-->
+        <div class="row">
+            <div class="row">
+                <h2 class="display-2">
+                    Contáctanos
+                </h2>
+                <!--Place Django form-->
+            </div>
+            <div class="row">
+                <h2 class="display-2">
+                    Información de Contacto
+                </h2>
+            </div>
+        </div>
+    </div>
+</body>
